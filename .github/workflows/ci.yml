@@ -1,0 +1,31 @@
+# 8. CI/CD: Set up a basic pipeline (GitHub Actions)
+name: Task Manager CI
+
+on:
+  push:
+    branches: [ master, main, feature/* ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run ESLint (Linting)
+      run: npm run lint
+      
+    - name: Run Jest Tests (Testing)
+      run: npm run test -- --ci
+      
+    - name: Verify Expo config (Build Step Check)
+      run: npx expo doctor

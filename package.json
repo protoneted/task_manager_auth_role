@@ -1,22 +1,62 @@
 {
   "name": "task-manager-expo",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "test": "jest",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "format": "prettier --write 'src/**/*.{ts,tsx,js,json}'",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "expo": "~54.0.25",
-    "expo-status-bar": "~3.0.8",
-    "react": "19.1.0",
-    "react-native": "0.81.5"
+    "@babel/plugin-transform-modules-commonjs": "^7.27.1",
+    "@react-native-async-storage/async-storage": "1.21.0",
+    "@react-navigation/bottom-tabs": "^6.5.20",
+    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/native-stack": "^6.9.26",
+    "expo": "~50.0.14",
+    "expo-status-bar": "~1.11.1",
+    "formik": "^2.4.5",
+    "i18n-js": "^4.4.3",
+    "react": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-safe-area-context": "4.8.2",
+    "react-native-screens": "~3.29.0",
+    "typescript": "^5.3.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@types/react": "~19.1.0",
-    "typescript": "~5.9.2"
+    "@babel/core": "^7.20.0",
+    "@testing-library/react-native": "^12.4.5",
+    "@types/i18n-js": "^3.8.7",
+    "@types/jest": "^29.5.12",
+    "@types/react": "~18.2.45",
+    "eslint": "^8.57.0",
+    "eslint-config-expo": "^7.0.0",
+    "husky": "^9.0.11",
+    "jest": "^29.2.1",
+    "jest-expo": "~50.0.4",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "react-test-renderer": "18.2.0"
   },
-  "private": true
+  "jest": {
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": [
+      "<rootDir>/__tests__/setup.ts"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  }
 }
