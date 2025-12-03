@@ -58,7 +58,5 @@ yarn-error.*
 /ios/
 *.iml
 
-# Expo managed
-app.json
 # expo caches
 .expo-shared/
